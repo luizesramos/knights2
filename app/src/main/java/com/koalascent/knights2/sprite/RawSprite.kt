@@ -84,8 +84,9 @@ class RawSprite(stream: InputStream?, unitsWidthwise: Int, unitsHeightwise: Int)
 
         // parent.showMessage("UH:" + unitHeight + " UW:" + unitWidth);
         mBitmap = Bitmap.createBitmap(
-            width * scalingFactor, height
-                    * scalingFactor, Bitmap.Config.ARGB_8888
+            width * scalingFactor,
+            height * scalingFactor,
+            Bitmap.Config.ARGB_8888
         )
         canvas = Canvas()
         setFrame(0)

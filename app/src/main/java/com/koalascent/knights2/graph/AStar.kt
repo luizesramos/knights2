@@ -42,7 +42,7 @@ internal class AStar constructor(
                 }
                 // d(current,neighbor) is the weight of the edge from current to neighbor
                 // tentative_gScore is the distance from start to the neighbor through current
-                val tentativeGScore = (gScore[current] ?: 0.0) + edgeDistance(current, neighbor)
+                val tentativeGScore = (gScore[current] ?: 0.0) + edgeDistance //edgeDistance(current, neighbor)
                 val gScoreNeighbor = (if (gScore.containsKey(neighbor)) gScore[neighbor] else Double.MAX_VALUE)!!
                 if (tentativeGScore < gScoreNeighbor) {
                     // This path to neighbor is better than any previous one. Record it!
@@ -64,9 +64,10 @@ internal class AStar constructor(
     }
 
     // edge distance between two nodes (make generic one day)
-    private fun edgeDistance(a: Pos?, b: Pos?): Double {
-        return 1.0
-    }
+    private val edgeDistance = 1.0
+//    private fun edgeDistance(a: Pos?, b: Pos?): Double {
+//        return 1.0
+//    }
 
     private fun lowestFScoreInOpenSet(): Pos? {
         var minScore = Double.MAX_VALUE
