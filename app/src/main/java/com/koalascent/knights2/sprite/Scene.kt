@@ -1,8 +1,6 @@
 package com.koalascent.knights2.sprite
 
-import android.content.Context
 import android.graphics.*
-import android.widget.ImageView
 import java.io.InputStream
 
 /**
@@ -16,17 +14,17 @@ class Scene {
     var height: Int
         private set
 
-    private var sceneBitmap: Bitmap? = null
+    var sceneBitmap: Bitmap? = null
+        private set
 
     private lateinit var mCanvas: Canvas
     private lateinit var clearPaint: Paint
 
     private var drawPaint: Paint? = null
 
-    constructor(context: Context) {
-        val metrics = context.resources.displayMetrics
-        width = metrics.widthPixels
-        height = metrics.heightPixels
+    constructor(width: Int, height: Int) {
+        this.width = width
+        this.height = height
         initScreen()
     }
 
@@ -56,10 +54,8 @@ class Scene {
     }
 
     fun placeAvatar(x: Int, y: Int, bmp: Bitmap?) {
-        mCanvas.drawBitmap(bmp!!, x.toFloat(), y.toFloat(), drawPaint)
-    }
-
-    fun draw(scene: ImageView) {
-        scene.setImageBitmap(sceneBitmap)
+        bmp?.let {
+            mCanvas.drawBitmap(it, x.toFloat(), y.toFloat(), drawPaint)
+        }
     }
 }

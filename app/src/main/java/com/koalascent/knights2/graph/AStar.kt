@@ -43,7 +43,7 @@ internal class AStar constructor(
                 // d(current,neighbor) is the weight of the edge from current to neighbor
                 // tentative_gScore is the distance from start to the neighbor through current
                 val tentativeGScore = (gScore[current] ?: 0.0) + edgeDistance //edgeDistance(current, neighbor)
-                val gScoreNeighbor = (if (gScore.containsKey(neighbor)) gScore[neighbor] else Double.MAX_VALUE)!!
+                val gScoreNeighbor = gScore[neighbor] ?: Double.MAX_VALUE
                 if (tentativeGScore < gScoreNeighbor) {
                     // This path to neighbor is better than any previous one. Record it!
                     cameFrom[neighbor] = current
