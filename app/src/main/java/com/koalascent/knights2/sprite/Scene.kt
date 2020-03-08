@@ -5,6 +5,9 @@ import android.graphics.*
 import android.widget.ImageView
 import java.io.InputStream
 
+/**
+ * (c) 2020 Luiz Ramos All Rights Reserved
+ */
 class Scene {
 
     // dimensions of the view
@@ -49,7 +52,6 @@ class Scene {
     fun resetScene() {
         mCanvas.apply {
             drawPaint(clearPaint)
-            drawColor(0x200000a0) // DEBUG
         }
     }
 

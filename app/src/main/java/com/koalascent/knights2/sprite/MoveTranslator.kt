@@ -1,5 +1,8 @@
 package com.koalascent.knights2.sprite
 
+/**
+ * (c) 2020 Luiz Ramos All Rights Reserved
+ */
 class MoveTranslator {
     private var dirIndex: Int
     private var spriteIndex: Int

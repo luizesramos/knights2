@@ -3,6 +3,9 @@ package com.koalascent.knights2.sprite
 import android.graphics.*
 import java.io.InputStream
 
+/**
+ * (c) 2020 Luiz Ramos All Rights Reserved
+ */
 class RawSprite(stream: InputStream?, unitsWidthwise: Int, unitsHeightwise: Int) {
     private val rawBitmap: Bitmap?
     private val mBitmap: Bitmap

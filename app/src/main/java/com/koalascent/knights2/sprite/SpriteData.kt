@@ -1,5 +1,7 @@
 package com.koalascent.knights2.sprite
 
+import kotlin.math.abs
+
 class SpriteData(private val screenWidth: Int, private val screenHeight: Int) {
     var x: Int
         private set
@@ -28,9 +30,6 @@ class SpriteData(private val screenWidth: Int, private val screenHeight: Int) {
         } else if (targetY < y) {
             mt.set(MoveTranslator.GO_UP)
         }
-
-        //android.util.Log.v("SpriteData", "POS(" + posX + "," + posY + ") TGT("
-        //		+ targetX + "," + targetY + ")");
     }
 
     fun setTarget(x: Int, y: Int) {
@@ -45,10 +44,10 @@ class SpriteData(private val screenWidth: Int, private val screenHeight: Int) {
     // returns the index of the
     fun walk(): Int {
         // stop condition: rounding up the arrival
-        if (Math.abs(targetX - x) < velX) {
+        if (abs(targetX - x) < velX) {
             targetX = x
         }
-        if (Math.abs(targetY - y) < velY) {
+        if (abs(targetY - y) < velY) {
             targetY = y
         }
 
@@ -76,10 +75,6 @@ class SpriteData(private val screenWidth: Int, private val screenHeight: Int) {
 
     fun stopped(): Boolean {
         return mt.isClear
-    }
-
-    companion object {
-        private const val SCREEN_BORDERS = 10
     }
 
     init {
