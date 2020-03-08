@@ -72,8 +72,7 @@ class MoveTranslator {
         for (i in 0 until DIRECTIONS) {
             moves[i][0] = i
             for (j in 1 until INDICES_PER_DIRECTION) {
-                moves[i][j] =
-                    moves[i][j - 1] + INDICES_PER_DIRECTION
+                moves[i][j] = moves[i][j - 1] + INDICES_PER_DIRECTION
             }
         }
         clearStatus()

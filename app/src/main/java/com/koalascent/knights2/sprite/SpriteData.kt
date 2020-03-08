@@ -12,14 +12,6 @@ class SpriteData(private val screenWidth: Int, private val screenHeight: Int) {
     private var targetY = 0
     private val mt: MoveTranslator
 
-    fun randomMove() {
-        val x = (SCREEN_BORDERS
-                + (Math.random() * (screenWidth - SCREEN_BORDERS) * 777 % (screenWidth - SCREEN_BORDERS)).toInt())
-        val y = (SCREEN_BORDERS
-                + (Math.random() * (screenHeight - SCREEN_BORDERS) * 777 % (screenHeight - SCREEN_BORDERS)).toInt())
-        setTarget(x, y)
-    }
-
     private fun parseDirection() {
         mt.clearStatus()
 

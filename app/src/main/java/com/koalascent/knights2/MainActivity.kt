@@ -18,10 +18,9 @@ import java.io.InputStream
  * (c) 2020 Luiz Ramos All Rights Reserved
  */
 
-class MainActivity : AppCompatActivity(), Runnable, View.OnTouchListener {
+class MainActivity : AppCompatActivity(), Runnable {
 
     companion object {
-        private const val TAG = "Knight"
         private const val WALK_DELAY = 500L
         private const val DEFAULT_MAX_STEPS = 30
     }
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity(), Runnable, View.OnTouchListener {
 
         // setting up the image view
         sceneView = findViewById(R.id.mapImageView)
-        sceneView?.setOnTouchListener(this)
+        sceneView.setOnTouchListener(touchListener)
 
         // creating a scene bitmap with the dimensions of the screen
         scene = Scene(this)
@@ -70,19 +69,6 @@ class MainActivity : AppCompatActivity(), Runnable, View.OnTouchListener {
         scene.placeAvatar(avatar.x, avatar.y,
                 avatarSprite.getCurrentBitmap(avatar.reverse))
         scene.draw(sceneView)
-        // android.util.Log.v(TAG, "FRAME: " + avatarSprite.getFrame());
-    }
-
-    fun showMessage(s: String?) {
-        Toast.makeText(applicationContext, s, Toast.LENGTH_LONG).show()
-    }
-
-    fun quickMessage(s: String?) {
-        Toast.makeText(applicationContext, s, Toast.LENGTH_SHORT).show()
-    }
-
-    fun prevClick(v: View?) {
-        avatar.randomMove()
     }
 
     // the avatar moves this many steps at a time
@@ -98,19 +84,14 @@ class MainActivity : AppCompatActivity(), Runnable, View.OnTouchListener {
         }
     }
 
-    override fun onTouch(v: View?, event: MotionEvent): Boolean {
-        val x = event.x.toInt() - avatarSprite.width / 2
-        val y = event.y.toInt() + avatarSprite.height / 2
+    private val touchListener = View.OnTouchListener { _: View, event: MotionEvent ->
         if (event.action == MotionEvent.ACTION_DOWN) {
-            // DEBUG: put something on the screen
-            // android.util.Log.v(TAG, "TOUCH X:" + x + " Y:" + y);
-            // scene.placeAvatar(x, y,
-            // avatarSprite.getCurrentBitmap(avatar.getReverse()));
-            // scene.draw(sceneView);
             resetStepThreshold()
+            val x = event.x.toInt() - avatarSprite.width / 2
+            val y = event.y.toInt() + avatarSprite.height / 2
             avatar.setTarget(x, y)
             sched.postDelayed(this, WALK_DELAY)
         }
-        return false
+        false
     }
 }
